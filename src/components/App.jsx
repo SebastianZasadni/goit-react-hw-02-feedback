@@ -1,5 +1,7 @@
-import {Feedback} from './feedback/Feedback.jsx';
+import { Feedback } from './feedback/Feedback.jsx';
 
 export const App = () => (
-    <><Feedback/></>
-)
+  <>
+    <Feedback />
+  </>
+);
