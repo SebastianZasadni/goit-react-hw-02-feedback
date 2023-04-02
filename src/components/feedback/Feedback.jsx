@@ -79,7 +79,6 @@ export class Feedback extends Component {
           total={this.state.total}
           positivePercentage={this.percentage}
         />
-        {console.log(this.percentage)}
       </div>
     );
   }
