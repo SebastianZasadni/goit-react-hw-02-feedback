@@ -1,34 +1,38 @@
 import React, { Component } from 'react';
 import './feedback.css';
+import { Statistics } from 'components/statistics/Statistics';
 
 export class Feedback extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      good: 0,
-      neutral: 0,
-      bad: 0,
-      total: 0,
-    };
-  }
+  static defaultProps = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+    total: 0,
+  };
 
-  clickGood = () => {
+  state = {
+    good: this.props.good,
+    neutral: this.props.neutral,
+    bad: this.props.bad,
+    total: this.props.total,
+  };
+
+  clickGood = evt => {
     this.setState({ good: this.state.good + 1 });
   };
-  clickNeutral = () => {
+  clickNeutral = evt => {
     this.setState({ neutral: this.state.neutral + 1 });
   };
 
-  clickBad = () => {
+  clickBad = evt => {
     this.setState({ bad: this.state.bad + 1 });
   };
 
-  countTotalFeedback = () => {
+  countTotalFeedback = evt => {
     this.setState({ total: this.state.total + 1 });
   };
 
   countPositiveFeedbackPercentage = () => {
-    console.log(this.percentage);
     if (this.percentage === undefined) {
       return (this.percentage = '');
     }
@@ -41,37 +45,41 @@ export class Feedback extends Component {
 
     return (
       <div className="feedback">
-        <h2>Please leave feedback</h2>
-        <button
-          onClick={() => {
-            this.clickGood();
-            this.countTotalFeedback();
-          }}
-        >
-          Good
-        </button>
-        <button
-          onClick={() => {
-            this.clickNeutral();
-            this.countTotalFeedback();
-          }}
-        >
-          Neutral
-        </button>
-        <button
-          onClick={() => {
-            this.clickBad();
-            this.countTotalFeedback();
-          }}
-        >
-          Bad
-        </button>
-        <h2>Statistics</h2>
-        <span className="span">Good: {this.state.good}</span>
-        <span> Neutral: {this.state.neutral}</span>
-        <span> Bad: {this.state.bad}</span>
-        <span> Total: {this.state.total}</span>
-        <span> Percentage: {this.percentage}%</span>
+        <div>
+          <h2>Please leave feedback</h2>
+          <button
+            onClick={() => {
+              this.clickGood();
+              this.countTotalFeedback();
+            }}
+          >
+            Good
+          </button>
+          <button
+            onClick={() => {
+              this.clickNeutral();
+              this.countTotalFeedback();
+            }}
+          >
+            Neutral
+          </button>
+          <button
+            onClick={() => {
+              this.clickBad();
+              this.countTotalFeedback();
+            }}
+          >
+            Bad
+          </button>
+        </div>
+        <Statistics
+          good={this.state.good}
+          neutral={this.state.neutral}
+          bad={this.state.bad}
+          total={this.state.total}
+          positivePercentage={this.percentage}
+        />
+        {console.log(this.percentage)}
       </div>
     );
   }
