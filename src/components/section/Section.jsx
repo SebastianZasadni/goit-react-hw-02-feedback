@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FeedbackOptions } from 'components/feedbackoptions/FeedbackOptions';
 import './Section.css';
 
-export const Section = ({ title}) => {
+export const Section = ({ title }) => {
   {
     return (
       <div className="section-feedback">

@@ -17,18 +17,18 @@ export class FeedbackOptions extends Component {
     total: this.props.total,
   };
 
-  clickGood = evt => {
+  clickGood = () => {
     this.setState({ good: this.state.good + 1 });
   };
-  clickNeutral = evt => {
+  clickNeutral = () => {
     this.setState({ neutral: this.state.neutral + 1 });
   };
 
-  clickBad = evt => {
+  clickBad = () => {
     this.setState({ bad: this.state.bad + 1 });
   };
 
-  countTotalFeedback = evt => {
+  countTotalFeedback = () => {
     this.setState({ total: this.state.total + 1 });
   };
 
@@ -44,40 +44,44 @@ export class FeedbackOptions extends Component {
     this.countPositiveFeedbackPercentage();
 
     return (
-      <div className="feedback-options">
-        <button
-          onClick={() => {
-            this.clickGood();
-            this.countTotalFeedback();
-          }}
-        >
-          Good
-        </button>
-        <button
-          onClick={() => {
-            this.clickNeutral();
-            this.countTotalFeedback();
-          }}
-        >
-          Neutral
-        </button>
-        <button
-          onClick={() => {
-            this.clickBad();
-            this.countTotalFeedback();
-          }}
-        >
-          Bad
-        </button>
-
-        <Statistics
-          good={this.state.good}
-          neutral={this.state.neutral}
-          bad={this.state.bad}
-          total={this.state.total}
-          positivePercentage={this.percentage}
-        />
-      </div>
+      <>
+        <div className="feedback-options">
+          <button
+            onClick={() => {
+              this.clickGood();
+              this.countTotalFeedback();
+            }}
+          >
+            Good
+          </button>
+          <button
+            onClick={() => {
+              this.clickNeutral();
+              this.countTotalFeedback();
+            }}
+          >
+            Neutral
+          </button>
+          <button
+            onClick={() => {
+              this.clickBad();
+              this.countTotalFeedback();
+            }}
+          >
+            Bad
+          </button>
+        </div>
+        <div className="statistics">
+          <h2>Statistics</h2>
+          <Statistics
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+            total={this.state.total}
+            positivePercentage={this.percentage}
+          />
+        </div>
+      </>
     );
   }
 }

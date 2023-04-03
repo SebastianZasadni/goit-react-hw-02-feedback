@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Notification } from 'components/notification/Notification';
 
 export const Statistics = ({
   good,
@@ -7,14 +8,16 @@ export const Statistics = ({
   total,
   positivePercentage,
 }) => {
+  if (total === 0) {
+    return <Notification message="There is no feedback" />;
+  }
   return (
-    <div className="statistics">
-      <h2>Statistics</h2>
+    <div className="feedback-answers">
       <span className="span">Good: {good}</span>
       <span> Neutral: {bad}</span>
       <span> Bad: {neutral}</span>
       <span> Total: {total}</span>
-      <span> Positive percentage: {positivePercentage} %</span>
+      <span> Positive feedback: {positivePercentage} %</span>
     </div>
   );
 };
