@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FeedbackOptions } from 'components/feedbackoptions/FeedbackOptions';
 import './Section.css';
