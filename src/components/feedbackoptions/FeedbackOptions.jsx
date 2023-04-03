@@ -38,6 +38,7 @@ export class FeedbackOptions extends Component {
     }
     this.percentage =
       (this.state.good * 100) / (this.state.good + this.state.bad);
+    this.positiveFeedback = parseFloat(this.percentage.toFixed(2));
   };
 
   render() {
@@ -78,7 +79,7 @@ export class FeedbackOptions extends Component {
             neutral={this.state.neutral}
             bad={this.state.bad}
             total={this.state.total}
-            positivePercentage={this.percentage}
+            positivePercentage={this.positiveFeedback}
           />
         </div>
       </>
