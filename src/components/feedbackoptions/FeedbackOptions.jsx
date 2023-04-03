@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './feedback.css';
+
 import { Statistics } from 'components/statistics/Statistics';
 
-export class Feedback extends Component {
+export class FeedbackOptions extends Component {
   static defaultProps = {
     good: 0,
     neutral: 0,
@@ -34,7 +34,7 @@ export class Feedback extends Component {
 
   countPositiveFeedbackPercentage = () => {
     if (this.percentage === undefined) {
-      return (this.percentage = '');
+      return (this.percentage = null);
     }
     this.percentage =
       (this.state.good * 100) / (this.state.good + this.state.bad);
@@ -44,34 +44,32 @@ export class Feedback extends Component {
     this.countPositiveFeedbackPercentage();
 
     return (
-      <div className="feedback">
-        <div>
-          <h2>Please leave feedback</h2>
-          <button
-            onClick={() => {
-              this.clickGood();
-              this.countTotalFeedback();
-            }}
-          >
-            Good
-          </button>
-          <button
-            onClick={() => {
-              this.clickNeutral();
-              this.countTotalFeedback();
-            }}
-          >
-            Neutral
-          </button>
-          <button
-            onClick={() => {
-              this.clickBad();
-              this.countTotalFeedback();
-            }}
-          >
-            Bad
-          </button>
-        </div>
+      <div className="feedback-options">
+        <button
+          onClick={() => {
+            this.clickGood();
+            this.countTotalFeedback();
+          }}
+        >
+          Good
+        </button>
+        <button
+          onClick={() => {
+            this.clickNeutral();
+            this.countTotalFeedback();
+          }}
+        >
+          Neutral
+        </button>
+        <button
+          onClick={() => {
+            this.clickBad();
+            this.countTotalFeedback();
+          }}
+        >
+          Bad
+        </button>
+
         <Statistics
           good={this.state.good}
           neutral={this.state.neutral}

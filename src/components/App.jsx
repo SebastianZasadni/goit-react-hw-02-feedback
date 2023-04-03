@@ -1,7 +1,7 @@
-import { Feedback } from './feedback/Feedback.jsx';
+import { Section } from './section/Section.jsx';
 
 export const App = () => (
   <>
-    <Feedback />
+    <Section title="Please leave feedback" />
   </>
 );
