@@ -1,4 +1,4 @@
-import { Section } from './section/Section.jsx';
+import { Section } from './feedback/section/Section.jsx';
 
 export const App = () => (
   <>

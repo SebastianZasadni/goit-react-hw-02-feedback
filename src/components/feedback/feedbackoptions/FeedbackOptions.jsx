@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Statistics } from 'components/statistics/Statistics';
+import { Statistics } from 'components/feedback/statistics/Statistics';
 
 export class FeedbackOptions extends Component {
   static defaultProps = {
