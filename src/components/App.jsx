@@ -3,6 +3,6 @@ import { Phonebook } from './phonebook/Phonebook.jsx';
 export const App = () => (
   <>
     <Section title="Please leave feedback" />
-    <Phonebook/>
+    <Phonebook />
   </>
 );
