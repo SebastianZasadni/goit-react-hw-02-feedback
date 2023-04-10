@@ -45,7 +45,7 @@ export class Phonebook extends Component {
         number: form.elements.number.value,
       });
     } else {
-      alert('Character with this name already exists!');
+      alert(`${contact.name} is already in contacts.`);
     }
 
     form.reset();
