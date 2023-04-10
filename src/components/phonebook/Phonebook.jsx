@@ -34,11 +34,20 @@ export class Phonebook extends Component {
       number: form.elements.number.value,
     };
 
-    this.setState({
-      contacts: [...this.state.contacts, contact],
-      name: form.elements.name.value,
-      number: form.elements.number.value,
-    });
+    const checkNewContactExist = this.state.contacts.find(
+      c => c.name === contact.name
+    );
+
+    if (checkNewContactExist === undefined) {
+      this.setState({
+        contacts: [...this.state.contacts, contact],
+        name: form.elements.name.value,
+        number: form.elements.number.value,
+      });
+    } else {
+      alert('Character with this name already exists!');
+    }
+
     form.reset();
   };
 
