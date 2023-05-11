@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { FeedbackOptions } from 'components/feedback/FeedbackOptions/FeedbackOptions';
+import { FeedbackOptions } from 'components/Feedback/FeedbackOptions/FeedbackOptions';
 import css from './Section.module.css';
 
 export const Section = ({ title }) => {
