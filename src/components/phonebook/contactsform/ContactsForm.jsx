@@ -1,7 +1,9 @@
+import css from '../Phonebook.module.css';
+
 export const ContactsForm = ({ handleSubmit }) => {
   return (
-    <div className="section-add-contacts">
-      <form className="contacts-form" onSubmit={handleSubmit}>
+    <div className={css.sectionaddcontacts}>
+      <form className={css.contactsform} onSubmit={handleSubmit}>
         Name
         <input
           type="text"
@@ -24,4 +26,3 @@ export const ContactsForm = ({ handleSubmit }) => {
   );
 };
 
-//

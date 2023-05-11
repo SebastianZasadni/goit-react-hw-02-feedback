@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Notification } from 'components/feedback/notification/Notification';
+import { Notification } from 'components/feedback/Notification/Notification';
 
 export const Statistics = ({
   good,

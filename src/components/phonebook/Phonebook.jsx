@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
-import './Phonebook.css';
-import { ContactsForm } from './contactsform/ContactsForm';
-import { ContactsList } from './contactslist/ContactsList';
-import { Filter } from './filter/Filter';
+import css from './Phonebook.module.css';
+import { ContactsForm } from './ContactsForm/ContactsForm';
+import { ContactsList } from './ContactsList/ContactsList';
+import { Filter } from './Filter/Filter';
 export class Phonebook extends Component {
   static defaultProps = {
     contacts: [
@@ -81,7 +82,7 @@ export class Phonebook extends Component {
     ));
 
     return (
-      <div className="section-phonebook">
+      <div className={css.sectionphonebook}>
         <h1>Phonebook</h1>
         <ContactsForm handleSubmit={this.addContact} />
         <Filter filtr={this.addFilter} />
@@ -90,3 +91,19 @@ export class Phonebook extends Component {
     );
   }
 }
+
+Phonebook.propTypes = {
+contacts: PropTypes.arrayOf(
+  PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+      })
+),
+name: PropTypes.string,
+number: PropTypes.string,
+filter: PropTypes.string,
+}
+
+
+

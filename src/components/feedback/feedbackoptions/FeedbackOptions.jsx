@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
-import { Statistics } from 'components/feedback/statistics/Statistics';
+import PropTypes from 'prop-types';
+import { Statistics } from 'components/feedback/Statistics/Statistics';
 
 export class FeedbackOptions extends Component {
   static defaultProps = {
@@ -85,4 +85,12 @@ export class FeedbackOptions extends Component {
       </>
     );
   }
+}
+
+FeedbackOptions.propTypes = {
+  good: PropTypes.number,
+  bad: PropTypes.number,
+  neutral: PropTypes.number,
+  total: PropTypes.number,
+  positivePercentage: PropTypes.number,
 }
