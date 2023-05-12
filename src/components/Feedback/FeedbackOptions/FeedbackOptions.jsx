@@ -17,56 +17,44 @@ export class FeedbackOptions extends Component {
     total: this.props.total,
   };
 
-  clickGood = () => {
-    this.setState({ good: this.state.good + 1 });
-  };
-  clickNeutral = () => {
-    this.setState({ neutral: this.state.neutral + 1 });
-  };
-
-  clickBad = () => {
-    this.setState({ bad: this.state.bad + 1 });
-  };
-
-  countTotalFeedback = () => {
-    this.setState({ total: this.state.total + 1 });
+  clickHandler = type => {
+    this.setState(
+      prevState => ({
+        [type]: prevState[type] + 1,
+        total: prevState.total + 1,
+      }),
+      this.getFeedbackPercentage()
+    );
   };
 
-  countPositiveFeedbackPercentage = () => {
-    if (this.percentage === undefined) {
-      return (this.percentage = null);
-    }
-    this.percentage =
+  getFeedbackPercentage = () => {
+    this.feedback =
       (this.state.good * 100) / (this.state.good + this.state.bad);
-    this.positiveFeedback = parseFloat(this.percentage.toFixed(2));
+    this.feedbackPercentage = parseFloat(this.feedback.toFixed(2));
   };
 
   render() {
-    this.countPositiveFeedbackPercentage();
-
+    this.getFeedbackPercentage();
     return (
       <>
         <div className="feedback-options">
           <button
             onClick={() => {
-              this.clickGood();
-              this.countTotalFeedback();
+              this.clickHandler('good');
             }}
           >
             Good
           </button>
           <button
             onClick={() => {
-              this.clickNeutral();
-              this.countTotalFeedback();
+              this.clickHandler('neutral');
             }}
           >
             Neutral
           </button>
           <button
             onClick={() => {
-              this.clickBad();
-              this.countTotalFeedback();
+              this.clickHandler('bad');
             }}
           >
             Bad
@@ -79,7 +67,7 @@ export class FeedbackOptions extends Component {
             neutral={this.state.neutral}
             bad={this.state.bad}
             total={this.state.total}
-            positivePercentage={this.positiveFeedback}
+            positivePercentage={this.feedbackPercentage}
           />
         </div>
       </>
@@ -93,4 +81,4 @@ FeedbackOptions.propTypes = {
   neutral: PropTypes.number,
   total: PropTypes.number,
   positivePercentage: PropTypes.number,
-}
+};

@@ -14,8 +14,8 @@ export const Statistics = ({
   return (
     <div className="feedback-answers">
       <span className="span">Good: {good}</span>
-      <span> Neutral: {bad}</span>
-      <span> Bad: {neutral}</span>
+      <span> Neutral: {neutral}</span>
+      <span> Bad: {bad}</span>
       <span> Total: {total}</span>
       <span> Positive feedback: {positivePercentage} %</span>
     </div>
