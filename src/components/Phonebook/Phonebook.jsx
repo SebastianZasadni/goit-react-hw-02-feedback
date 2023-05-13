@@ -40,11 +40,11 @@ export class Phonebook extends Component {
     );
 
     if (checkNewContactExist === undefined) {
-      this.setState({
-        contacts: [...this.state.contacts, contact],
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, contact],
         name: form.elements.name.value,
         number: form.elements.number.value,
-      });
+      }));
     } else {
       alert(`${contact.name} is already in contacts.`);
     }
