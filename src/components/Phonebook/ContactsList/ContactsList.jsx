@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import css from '../Phonebook.module.css';
 
 export const ContactsList = ({ contacts }) => {
@@ -9,3 +10,12 @@ export const ContactsList = ({ contacts }) => {
   );
 };
 
+ContactsList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      number: PropTypes.string,
+    })
+  ),
+};

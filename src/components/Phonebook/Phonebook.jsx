@@ -85,7 +85,7 @@ export class Phonebook extends Component {
       <div className={css.sectionphonebook}>
         <h1>Phonebook</h1>
         <ContactsForm handleSubmit={this.addContact} />
-        <Filter filtr={this.addFilter} />
+        <Filter addFilter={this.addFilter} />
         <ContactsList contacts={contacts} />
       </div>
     );
@@ -93,17 +93,14 @@ export class Phonebook extends Component {
 }
 
 Phonebook.propTypes = {
-contacts: PropTypes.arrayOf(
-  PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
-      })
-),
-name: PropTypes.string,
-number: PropTypes.string,
-filter: PropTypes.string,
-}
-
-
-
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+  name: PropTypes.string,
+  number: PropTypes.string,
+  filter: PropTypes.string,
+};
