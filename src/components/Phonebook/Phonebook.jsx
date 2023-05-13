@@ -68,7 +68,7 @@ export class Phonebook extends Component {
     });
   };
 
-  render() {
+  shouldComponentUpdate(nextProps, nextState) {
     const filteredContacts = this.state.contacts.filter(c =>
       c.name.toLowerCase().startsWith(this.state.filter.toLowerCase())
     );
@@ -80,13 +80,16 @@ export class Phonebook extends Component {
         </button>
       </li>
     ));
+    return contacts;
+  }
 
+  render() {
     return (
       <div className={css.sectionphonebook}>
         <h1>Phonebook</h1>
         <ContactsForm handleSubmit={this.addContact} />
         <Filter addFilter={this.addFilter} />
-        <ContactsList contacts={contacts} />
+        <ContactsList contacts={this.shouldComponentUpdate()} />
       </div>
     );
   }

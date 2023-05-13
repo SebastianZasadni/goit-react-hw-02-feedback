@@ -18,19 +18,17 @@ export class FeedbackOptions extends Component {
   };
 
   clickHandler = type => {
-    this.setState(
-      prevState => ({
-        [type]: prevState[type] + 1,
-        total: prevState.total + 1,
-      }),
-      this.getFeedbackPercentage()
-    );
+    this.setState(prevState => ({
+      [type]: prevState[type] + 1,
+      total: prevState.total + 1,
+    }));
   };
 
   getFeedbackPercentage = () => {
     this.feedback =
       (this.state.good * 100) / (this.state.good + this.state.bad);
     this.feedbackPercentage = parseFloat(this.feedback.toFixed(2));
+    return this.feedback;
   };
 
   render() {
