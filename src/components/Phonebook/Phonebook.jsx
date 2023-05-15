@@ -5,6 +5,7 @@ import css from './Phonebook.module.css';
 import { ContactsForm } from './ContactsForm/ContactsForm';
 import { ContactsList } from './ContactsList/ContactsList';
 import { Filter } from './Filter/Filter';
+
 export class Phonebook extends Component {
   static defaultProps = {
     contacts: [
@@ -68,7 +69,7 @@ export class Phonebook extends Component {
     });
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
+  render() {
     const filteredContacts = this.state.contacts.filter(c =>
       c.name.toLowerCase().startsWith(this.state.filter.toLowerCase())
     );
@@ -80,16 +81,12 @@ export class Phonebook extends Component {
         </button>
       </li>
     ));
-    return contacts;
-  }
-
-  render() {
     return (
       <div className={css.sectionphonebook}>
         <h1>Phonebook</h1>
         <ContactsForm handleSubmit={this.addContact} />
         <Filter addFilter={this.addFilter} />
-        <ContactsList contacts={this.shouldComponentUpdate()} />
+        <ContactsList contacts={contacts} />
       </div>
     );
   }
