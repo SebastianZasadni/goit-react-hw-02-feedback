@@ -25,18 +25,12 @@ export class FeedbackOptions extends Component {
   };
 
   getFeedbackPercentage = () => {
-    if (this.state.good === 0 && this.state.bad === 0) {
-      return '';
-    } else {
-      this.feedback =
-        (this.state.good * 100) / (this.state.good + this.state.bad);
-      this.feedbackPercentage = parseFloat(this.feedback.toFixed(2));
-      return this.feedback;
-    }
+    const { good, bad, neutral } = this.state;
+    return parseFloat(((good * 100) / (good + bad + neutral)).toFixed(2)) ?? 0;
   };
 
   render() {
-    this.getFeedbackPercentage();
+    const {good, neutral, bad, total} = this.state;
     return (
       <>
         <div>
@@ -65,11 +59,11 @@ export class FeedbackOptions extends Component {
         <div>
           <h2>Statistics</h2>
           <Statistics
-            good={this.state.good}
-            neutral={this.state.neutral}
-            bad={this.state.bad}
-            total={this.state.total}
-            positivePercentage={this.feedbackPercentage}
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={total}
+            positivePercentage={this.getFeedbackPercentage()}
           />
         </div>
       </>
@@ -78,9 +72,9 @@ export class FeedbackOptions extends Component {
 }
 
 FeedbackOptions.propTypes = {
-  good: PropTypes.number,
-  bad: PropTypes.number,
-  neutral: PropTypes.number,
-  total: PropTypes.number,
+  good: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
   positivePercentage: PropTypes.number,
 };

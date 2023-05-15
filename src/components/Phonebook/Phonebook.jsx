@@ -26,38 +26,33 @@ export class Phonebook extends Component {
     filter: this.props.filter,
   };
 
-  addContact = evt => {
+  handleSubmit = evt => {
     evt.preventDefault();
     const form = evt.currentTarget;
-
     const contact = {
       id: nanoid(),
       name: form.elements.name.value,
       number: form.elements.number.value,
     };
-
-    const checkNewContactExist = this.state.contacts.find(
-      c => c.name === contact.name
-    );
-
-    if (checkNewContactExist === undefined) {
-      this.setState(prevState => ({
-        contacts: [...prevState.contacts, contact],
-        name: form.elements.name.value,
-        number: form.elements.number.value,
-      }));
-    } else {
-      alert(`${contact.name} is already in contacts.`);
-    }
-
     form.reset();
+    this.handleAddContact(contact);
   };
 
-  addFilter = evt => {
+  handleFilter = evt => {
     const filter = evt.currentTarget.value;
     this.setState({
       filter: filter,
     });
+  };
+
+  handleAddContact = contact => {
+    const { contacts, name } = this.state;
+    const isContactExist = contacts.find(c => c.name === name);
+    isContactExist === undefined
+      ? this.setState(prevState => ({
+          contacts: [...prevState.contacts, contact],
+        }))
+      : alert(`${name} is already in contacts.`);
   };
 
   deleteContact = id => {
@@ -69,11 +64,12 @@ export class Phonebook extends Component {
     });
   };
 
-  render() {
-    const filteredContacts = this.state.contacts.filter(c =>
-      c.name.toLowerCase().startsWith(this.state.filter.toLowerCase())
+  filtrContacts = () => {
+    const { contacts, filter } = this.state;
+    const filtrContacts = contacts.filter(c =>
+      c.name.toLowerCase().startsWith(filter.toLowerCase())
     );
-    const contacts = filteredContacts.map(c => (
+    const filteredContacts = filtrContacts.map(c => (
       <li key={c.id}>
         {c.name}: {c.number}
         <button type="submit" onClick={() => this.deleteContact(c.id)}>
@@ -81,12 +77,16 @@ export class Phonebook extends Component {
         </button>
       </li>
     ));
+    return filteredContacts;
+  };
+
+  render() {
     return (
       <div className={css.sectionphonebook}>
         <h1>Phonebook</h1>
-        <ContactsForm handleSubmit={this.addContact} />
-        <Filter addFilter={this.addFilter} />
-        <ContactsList contacts={contacts} />
+        <ContactsForm handleSubmit={this.handleSubmit} />
+        <Filter handleFilter={this.handleFilter} />
+        <ContactsList contacts={this.filtrContacts()} />
       </div>
     );
   }
