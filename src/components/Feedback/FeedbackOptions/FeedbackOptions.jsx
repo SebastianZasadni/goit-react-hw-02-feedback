@@ -25,17 +25,21 @@ export class FeedbackOptions extends Component {
   };
 
   getFeedbackPercentage = () => {
-    this.feedback =
-      (this.state.good * 100) / (this.state.good + this.state.bad);
-    this.feedbackPercentage = parseFloat(this.feedback.toFixed(2));
-    return this.feedback;
+    if (this.state.good === 0 && this.state.bad === 0) {
+      return '';
+    } else {
+      this.feedback =
+        (this.state.good * 100) / (this.state.good + this.state.bad);
+      this.feedbackPercentage = parseFloat(this.feedback.toFixed(2));
+      return this.feedback;
+    }
   };
 
   render() {
     this.getFeedbackPercentage();
     return (
       <>
-        <div className="feedback-options">
+        <div>
           <button
             onClick={() => {
               this.clickHandler('good');
@@ -58,7 +62,7 @@ export class FeedbackOptions extends Component {
             Bad
           </button>
         </div>
-        <div className="statistics">
+        <div>
           <h2>Statistics</h2>
           <Statistics
             good={this.state.good}
