@@ -46,13 +46,17 @@ export class Phonebook extends Component {
   };
 
   handleAddContact = contact => {
-    const { contacts, name } = this.state;
-    const isContactExist = contacts.find(c => c.name === name);
-    isContactExist === undefined
-      ? this.setState(prevState => ({
+    const { contacts } = this.state;
+    const { name } = contact;
+
+    const isContactExist = () =>
+      contacts.find(c => c.name.toLowerCase() === name.toLowerCase());
+
+    isContactExist()
+      ? alert(`${name} is already in contacts.`)
+      : this.setState(prevState => ({
           contacts: [...prevState.contacts, contact],
-        }))
-      : alert(`${name} is already in contacts.`);
+        }));
   };
 
   deleteContact = id => {
@@ -66,10 +70,10 @@ export class Phonebook extends Component {
 
   filtrContacts = () => {
     const { contacts, filter } = this.state;
-    const filtrContacts = contacts.filter(c =>
+    const filtredContacts = contacts.filter(c =>
       c.name.toLowerCase().startsWith(filter.toLowerCase())
     );
-    const filteredContacts = filtrContacts.map(c => (
+    return filtredContacts.map(c => (
       <li key={c.id}>
         {c.name}: {c.number}
         <button type="submit" onClick={() => this.deleteContact(c.id)}>
@@ -77,15 +81,14 @@ export class Phonebook extends Component {
         </button>
       </li>
     ));
-    return filteredContacts;
   };
 
   render() {
     return (
       <div className={css.sectionphonebook}>
         <h1>Phonebook</h1>
-        <ContactsForm handleSubmit={this.handleSubmit} />
-        <Filter handleFilter={this.handleFilter} />
+        <ContactsForm onSubmit={this.handleSubmit} />
+        <Filter onFilter={this.handleFilter} />
         <ContactsList contacts={this.filtrContacts()} />
       </div>
     );
