@@ -30,31 +30,15 @@ export class FeedbackOptions extends Component {
   };
 
   render() {
-    const {good, neutral, bad, total} = this.state;
+    const { good, neutral, bad, total } = this.state;
     return (
       <>
         <div>
-          <button
-            onClick={() => {
-              this.clickHandler('good');
-            }}
-          >
-            Good
-          </button>
-          <button
-            onClick={() => {
-              this.clickHandler('neutral');
-            }}
-          >
+          <button onClick={this.clickHandler.bind(this, 'good')}>Good</button>
+          <button onClick={this.clickHandler.bind(this, 'neutral')}>
             Neutral
           </button>
-          <button
-            onClick={() => {
-              this.clickHandler('bad');
-            }}
-          >
-            Bad
-          </button>
+          <button onClick={this.clickHandler.bind(this, 'bad')}>Bad</button>
         </div>
         <div>
           <h2>Statistics</h2>
